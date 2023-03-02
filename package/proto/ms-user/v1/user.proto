@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package ms_user.v1;
+option go_package = "/go-proto";
+
+import "google/protobuf/timestamp.proto";
+
+// rcp function
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns(CreateUserResponse) {}
+  rpc Login(LoginRequest) returns(LoginResponse) {}
+  rpc Authentication(AuthenticationRequest) returns(AuthenticationResponse) {}
+}
+
+// message
+message CreateUserRequest {
+  string email = 1;
+  string password = 2;
+  string phone_number = 3;
+  string first_name = 4;
+  string last_name = 5;
+}
+
+message CreateUserResponse {
+  int64 id = 1;
+  string email = 2;
+  string phone_number = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string status = 6;
+  google.protobuf.Timestamp created_at = 7;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+  google.protobuf.Timestamp expired_at = 2;
+}
+
+message AuthenticationRequest {
+  string token = 1;
+}
+
+message AuthenticationResponse {
+  int64 id = 1;
+  string email = 2;
+  string phone_number = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string status = 6;
+  google.protobuf.Timestamp logged_in_at = 7;
+  google.protobuf.Timestamp expired_at = 8;
+}

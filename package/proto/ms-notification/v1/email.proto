@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package ms_notification.v1;
+option go_package = "/go-proto";
+
+import "google/protobuf/timestamp.proto";
+
+service EmailService {
+    rpc SendActiveEmail (SendActiveEmailRequest) returns (SendActiveEmailResponse) {}
+}
+
+message SendActiveEmailRequest {
+    string email = 1;
+    string code = 2;
+    string name = 3;
+    string url = 4;
+    int64 user_id = 5;
+}
+
+message SendActiveEmailResponse {
+    string message_id = 1;
+}

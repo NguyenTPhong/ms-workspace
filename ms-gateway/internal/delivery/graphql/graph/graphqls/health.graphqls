@@ -1,0 +1,20 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type HealthCheck {
+  code: Int!
+  message: String!
+}
+
+input MutationHealthCheck {
+  text: String!
+}
+
+type Query {
+  health: HealthCheck!
+}
+
+type Mutation {
+  mutationHealth(input: MutationHealthCheck!): HealthCheck!
+}
